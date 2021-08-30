@@ -1148,7 +1148,8 @@ addPolylines <- function(
   )))
   pgons <- derivePolygons(data, lng, lat, missing(lng), missing(lat), "addPolylines")
   invokeMethod(map, data, "addPolylines", pgons, layerId, group, options,
-               popup, popupOptions, safeLabel(label, data), labelOptions, highlightOptions) %>%
+               popup, popupOptions, safeLabel(label, data), labelOptions, highlightOptions,
+               getCrosstalkOptions(data)) %>%
     expandLimitsBbox(pgons)
 }
 
@@ -1193,7 +1194,8 @@ addRectangles <- function(
 
   invokeMethod(
     map, data, "addRectangles", df1$lat, df1$lng, df2$lat, df2$lng, layerId, group,
-    options, popup, popupOptions, safeLabel(label, data), labelOptions, highlightOptions
+    options, popup, popupOptions, safeLabel(label, data), labelOptions, highlightOptions,
+    getCrosstalkOptions(data)
   ) %>%
     expandLimits(c(lat1, lat2), c(lng1, lng2))
 }
@@ -1230,7 +1232,8 @@ addPolygons <- function(
   pgons <- derivePolygons(data, lng, lat, missing(lng), missing(lat), "addPolygons")
   invokeMethod(
     map, data, "addPolygons", pgons, layerId, group,
-    options, popup, popupOptions, safeLabel(label, data), labelOptions, highlightOptions
+    options, popup, popupOptions, safeLabel(label, data), labelOptions, highlightOptions,
+    getCrosstalkOptions(data)
   ) %>%
     expandLimitsBbox(pgons)
 }
